@@ -1,0 +1,2595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Timeless Journeys — Historical Tourist Places</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #c9a84c;
+    --gold-light: #e8d5a3;
+    --dark: #0d0a05;
+    --dark2: #1a1408;
+    --parchment: #f5edd6;
+    --ink: #2c1f0e;
+    --accent: #8b1a1a;
+    --stone: #6b5e4e;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Cormorant Garamond', serif;
+    background: var(--dark);
+    color: var(--parchment);
+    overflow-x: hidden;
+  }
+
+  /* ===== PAGE SYSTEM ===== */
+  .page { display: none; min-height: 100vh; }
+  .page.active { display: block; }
+
+  /* ===== LOGIN PAGE ===== */
+  #login-page {
+    background: linear-gradient(135deg, #0d0a05 0%, #1a1408 40%, #0d0a05 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+  }
+
+  #login-page::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: 
+      radial-gradient(ellipse 60% 50% at 20% 50%, rgba(201,168,76,0.08) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 60% at 80% 30%, rgba(139,26,26,0.06) 0%, transparent 70%);
+  }
+
+  .bg-ornament {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .bg-ornament::before {
+    content: '☽ ✦ ☽ ✦ ☽ ✦ ☽';
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.7rem;
+    letter-spacing: 1.5rem;
+    color: rgba(201,168,76,0.15);
+    white-space: nowrap;
+  }
+
+  .bg-ornament::after {
+    content: '☽ ✦ ☽ ✦ ☽ ✦ ☽';
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.7rem;
+    letter-spacing: 1.5rem;
+    color: rgba(201,168,76,0.15);
+    white-space: nowrap;
+  }
+
+  .login-card {
+    position: relative;
+    z-index: 10;
+    width: 420px;
+    padding: 3rem;
+    border: 1px solid rgba(201,168,76,0.3);
+    background: rgba(13,10,5,0.95);
+    backdrop-filter: blur(20px);
+    animation: fadeInUp 1s ease;
+  }
+
+  .login-card::before,
+  .login-card::after {
+    content: '';
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border-color: var(--gold);
+    border-style: solid;
+  }
+  .login-card::before { top: -1px; left: -1px; border-width: 2px 0 0 2px; }
+  .login-card::after { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
+
+  .login-logo {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .login-logo .compass {
+    font-size: 2.5rem;
+    display: block;
+    animation: rotate 20s linear infinite;
+    color: var(--gold);
+  }
+
+  .login-logo h1 {
+    font-family: 'Cinzel', serif;
+    font-size: 1.4rem;
+    letter-spacing: 0.3rem;
+    color: var(--gold);
+    margin-top: 0.5rem;
+  }
+
+  .login-logo p {
+    font-style: italic;
+    color: var(--stone);
+    font-size: 0.85rem;
+    margin-top: 0.3rem;
+  }
+
+  .divider {
+    text-align: center;
+    margin: 1.5rem 0;
+    position: relative;
+    color: var(--gold);
+    font-size: 0.7rem;
+    letter-spacing: 0.3rem;
+  }
+
+  .divider::before, .divider::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 35%;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(201,168,76,0.4));
+  }
+  .divider::before { left: 0; }
+  .divider::after { right: 0; transform: scaleX(-1); }
+
+  .form-group { margin-bottom: 1.5rem; }
+
+  .form-group label {
+    display: block;
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.2rem;
+    color: var(--gold);
+    margin-bottom: 0.6rem;
+    text-transform: uppercase;
+  }
+
+  .form-group input {
+    width: 100%;
+    padding: 0.9rem 1rem;
+    background: rgba(201,168,76,0.05);
+    border: 1px solid rgba(201,168,76,0.2);
+    color: var(--parchment);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s;
+  }
+
+  .form-group input:focus {
+    border-color: var(--gold);
+    background: rgba(201,168,76,0.08);
+    box-shadow: 0 0 15px rgba(201,168,76,0.1);
+  }
+
+  .form-group input::placeholder { color: rgba(245,237,214,0.3); }
+
+  .btn-login {
+    width: 100%;
+    padding: 1rem;
+    background: linear-gradient(135deg, var(--gold), #a07830);
+    color: var(--dark);
+    border: none;
+    font-family: 'Cinzel', serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.3rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-top: 0.5rem;
+  }
+
+  .btn-login:hover {
+    background: linear-gradient(135deg, #e8d5a3, var(--gold));
+    transform: translateY(-1px);
+    box-shadow: 0 8px 25px rgba(201,168,76,0.3);
+  }
+
+  .login-footer {
+    text-align: center;
+    margin-top: 1.5rem;
+    font-size: 0.8rem;
+    color: var(--stone);
+  }
+
+  .login-footer a {
+    color: var(--gold);
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  /* ===== NAVBAR ===== */
+  .navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 1.2rem 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(13,10,5,0.95);
+    border-bottom: 1px solid rgba(201,168,76,0.2);
+    backdrop-filter: blur(10px);
+  }
+
+  .nav-logo {
+    font-family: 'Cinzel', serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.2rem;
+    color: var(--gold);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.2rem;
+    text-transform: uppercase;
+    color: var(--parchment);
+    text-decoration: none;
+    cursor: pointer;
+    transition: color 0.3s;
+    position: relative;
+  }
+
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--gold);
+    transition: width 0.3s;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+  .nav-links a:hover::after { width: 100%; }
+
+  .nav-user {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.75rem;
+    color: var(--stone);
+  }
+
+  .btn-logout {
+    padding: 0.4rem 1.2rem;
+    border: 1px solid rgba(201,168,76,0.4);
+    background: transparent;
+    color: var(--gold);
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.15rem;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  .btn-logout:hover { background: rgba(201,168,76,0.1); }
+
+  /* ===== HERO ===== */
+  .hero {
+    height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: 
+      linear-gradient(to bottom, rgba(13,10,5,0.5) 0%, rgba(13,10,5,0.2) 40%, rgba(13,10,5,0.7) 100%),
+      url('https://images.unsplash.com/photo-1564507592333-c60657eea523?w=1800&q=80') center/cover;
+    transform: scale(1.05);
+    animation: slowZoom 20s ease infinite alternate;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 800px;
+    padding: 2rem;
+    animation: fadeInUp 1.2s ease;
+  }
+
+  .hero-eyebrow {
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.5rem;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    font-weight: 900;
+    line-height: 1.05;
+    color: var(--parchment);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .hero-subtitle {
+    font-size: 1.1rem;
+    color: rgba(245,237,214,0.7);
+    line-height: 1.8;
+    max-width: 500px;
+    margin: 0 auto 2.5rem;
+  }
+
+  .hero-cta {
+    display: inline-block;
+    padding: 1rem 3rem;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-family: 'Cinzel', serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.4rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.4s;
+    background: transparent;
+    text-decoration: none;
+  }
+
+  .hero-cta:hover {
+    background: var(--gold);
+    color: var(--dark);
+    box-shadow: 0 0 40px rgba(201,168,76,0.4);
+  }
+
+  .scroll-indicator {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    color: rgba(201,168,76,0.5);
+    font-family: 'Cinzel', serif;
+    font-size: 0.55rem;
+    letter-spacing: 0.3rem;
+    animation: bounce 2s ease infinite;
+  }
+
+  /* ===== STATS BAR ===== */
+  .stats-bar {
+    background: rgba(201,168,76,0.08);
+    border-top: 1px solid rgba(201,168,76,0.2);
+    border-bottom: 1px solid rgba(201,168,76,0.2);
+    padding: 2rem 4rem;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+  }
+
+  .stat-item {
+    text-align: center;
+  }
+
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--gold);
+    display: block;
+  }
+
+  .stat-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.2rem;
+    text-transform: uppercase;
+    color: var(--stone);
+    font-family: 'Cinzel', serif;
+  }
+
+  /* ===== SECTION STYLES ===== */
+  .section {
+    padding: 6rem 4rem;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .section-tag {
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.4rem;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    color: var(--parchment);
+    margin-bottom: 1rem;
+  }
+
+  .section-desc {
+    color: var(--stone);
+    font-size: 1rem;
+    max-width: 500px;
+    margin: 0 auto;
+    line-height: 1.8;
+  }
+
+  /* ===== PLACES GRID ===== */
+  .places-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+  }
+
+  .place-card {
+    position: relative;
+    height: 400px;
+    overflow: hidden;
+    cursor: pointer;
+    group: true;
+  }
+
+  .place-card.tall { grid-row: span 2; height: auto; }
+  .place-card.wide { grid-column: span 2; }
+
+  .place-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s ease;
+    display: block;
+  }
+
+  .place-card:hover .place-img { transform: scale(1.08); }
+
+  .place-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(13,10,5,0.95) 0%, rgba(13,10,5,0.2) 60%, transparent 100%);
+    transition: background 0.4s;
+  }
+
+  .place-card:hover .place-overlay {
+    background: linear-gradient(to top, rgba(13,10,5,0.98) 0%, rgba(13,10,5,0.5) 60%, rgba(13,10,5,0.1) 100%);
+  }
+
+  .place-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 2rem;
+    transform: translateY(60px);
+    transition: transform 0.4s ease;
+  }
+
+  .place-card:hover .place-info { transform: translateY(0); }
+
+  .place-tag {
+    font-family: 'Cinzel', serif;
+    font-size: 0.55rem;
+    letter-spacing: 0.3rem;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+
+  .place-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--parchment);
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+  }
+
+  .place-location {
+    font-size: 0.8rem;
+    color: var(--gold-light);
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
+
+  .place-desc {
+    font-size: 0.85rem;
+    color: rgba(245,237,214,0.6);
+    line-height: 1.6;
+    opacity: 0;
+    transition: opacity 0.4s 0.1s;
+    margin-bottom: 1rem;
+  }
+
+  .place-card:hover .place-desc { opacity: 1; }
+
+  .place-link {
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.2rem;
+    color: var(--gold);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(201,168,76,0.3);
+    padding-bottom: 2px;
+    opacity: 0;
+    transition: opacity 0.4s 0.15s;
+    cursor: pointer;
+  }
+
+  .place-card:hover .place-link { opacity: 1; }
+
+  /* ===== FEATURED SECTION ===== */
+  .featured-section {
+    background: linear-gradient(135deg, rgba(201,168,76,0.05) 0%, transparent 50%);
+    border-top: 1px solid rgba(201,168,76,0.1);
+    border-bottom: 1px solid rgba(201,168,76,0.1);
+    padding: 6rem 4rem;
+  }
+
+  .featured-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .featured-img-wrap {
+    position: relative;
+  }
+
+  .featured-img {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+  }
+
+  .featured-img-badge {
+    position: absolute;
+    top: -1.5rem;
+    right: -1.5rem;
+    width: 100px;
+    height: 100px;
+    border: 1px solid var(--gold);
+    background: var(--dark);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cinzel', serif;
+    font-size: 0.55rem;
+    letter-spacing: 0.1rem;
+    color: var(--gold);
+    text-align: center;
+    line-height: 1.6;
+  }
+
+  .featured-content {}
+
+  .featured-year {
+    font-family: 'Playfair Display', serif;
+    font-size: 5rem;
+    font-weight: 900;
+    color: rgba(201,168,76,0.1);
+    line-height: 1;
+    margin-bottom: -1rem;
+  }
+
+  .featured-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--parchment);
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+  }
+
+  .featured-text {
+    color: var(--stone);
+    line-height: 1.9;
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .featured-facts {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    border-top: 1px solid rgba(201,168,76,0.15);
+    padding-top: 1.5rem;
+  }
+
+  .fact {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  .fact-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.55rem;
+    letter-spacing: 0.2rem;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+
+  .fact-value {
+    font-size: 0.9rem;
+    color: var(--parchment);
+  }
+
+  /* ===== CATEGORIES ===== */
+  .categories-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+
+  .cat-card {
+    border: 1px solid rgba(201,168,76,0.15);
+    padding: 2rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.4s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cat-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(201,168,76,0.08) 0%, transparent 100%);
+    opacity: 0;
+    transition: opacity 0.4s;
+  }
+
+  .cat-card:hover::before { opacity: 1; }
+  .cat-card:hover { border-color: rgba(201,168,76,0.5); transform: translateY(-4px); }
+
+  .cat-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .cat-name {
+    font-family: 'Cinzel', serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.2rem;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  .cat-count {
+    font-size: 0.8rem;
+    color: var(--stone);
+  }
+
+  /* ===== TESTIMONIAL ===== */
+  .testimonial-section {
+    padding: 6rem 4rem;
+    background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(201,168,76,0.04) 0%, transparent 70%);
+    text-align: center;
+  }
+
+  .testimonial-quote {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    font-style: italic;
+    color: var(--parchment);
+    max-width: 800px;
+    margin: 0 auto 2rem;
+    line-height: 1.6;
+  }
+
+  .testimonial-author {
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.3rem;
+    color: var(--gold);
+  }
+
+  /* ===== FOOTER ===== */
+  footer {
+    border-top: 1px solid rgba(201,168,76,0.15);
+    padding: 3rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  footer p {
+    font-size: 0.75rem;
+    color: var(--stone);
+    font-family: 'Cinzel', serif;
+    letter-spacing: 0.1rem;
+  }
+
+  footer .footer-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  footer .footer-links a {
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.1rem;
+    color: var(--stone);
+    text-decoration: none;
+    transition: color 0.3s;
+    cursor: pointer;
+  }
+
+  footer .footer-links a:hover { color: var(--gold); }
+
+  /* ===== DETAIL PAGE ===== */
+  .detail-hero {
+    height: 60vh;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+  }
+
+  .detail-hero-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .detail-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(13,10,5,1) 0%, rgba(13,10,5,0.3) 60%, rgba(13,10,5,0.5) 100%);
+  }
+
+  .detail-hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 4rem;
+    max-width: 800px;
+  }
+
+  .back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.2rem;
+    color: var(--gold);
+    cursor: pointer;
+    margin-bottom: 1.5rem;
+    background: none;
+    border: none;
+    padding: 0;
+    transition: gap 0.3s;
+  }
+  .back-btn:hover { gap: 0.8rem; }
+
+  .detail-content {
+    padding: 4rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 4rem;
+  }
+
+  .detail-body p {
+    line-height: 1.9;
+    color: rgba(245,237,214,0.8);
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .detail-sidebar {}
+
+  .info-card {
+    border: 1px solid rgba(201,168,76,0.2);
+    padding: 2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .info-card h3 {
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.2rem;
+    color: var(--gold);
+    margin-bottom: 1.2rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+  }
+
+  .info-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid rgba(245,237,214,0.05);
+    font-size: 0.85rem;
+  }
+
+  .info-row span:first-child { color: var(--stone); }
+  .info-row span:last-child { color: var(--parchment); }
+
+  /* ===== ANIMATIONS ===== */
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes slowZoom {
+    from { transform: scale(1); }
+    to { transform: scale(1.08); }
+  }
+
+  @keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(-8px); }
+  }
+
+  /* ===== GALLERY PAGE ===== */
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 200px;
+    gap: 4px;
+    padding: 2rem 4rem;
+  }
+
+  .gallery-item {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+  }
+
+  .gallery-item:nth-child(3n) { grid-row: span 2; }
+  .gallery-item:nth-child(5n) { grid-column: span 2; }
+
+  .gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s, filter 0.4s;
+    filter: brightness(0.8) saturate(0.9);
+  }
+
+  .gallery-item:hover img {
+    transform: scale(1.08);
+    filter: brightness(1) saturate(1.1);
+  }
+
+  .gallery-item-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(13,10,5,0);
+    transition: background 0.4s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .gallery-item:hover .gallery-item-overlay {
+    background: rgba(13,10,5,0.4);
+  }
+
+  .gallery-item-label {
+    color: var(--parchment);
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-style: italic;
+    opacity: 0;
+    transition: opacity 0.4s;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+    text-align: center;
+    padding: 1rem;
+  }
+
+  .gallery-item:hover .gallery-item-label { opacity: 1; }
+
+  /* ===== NAV ACTIVE STATE ===== */
+  .nav-links a.active { color: var(--gold); }
+  .nav-links a.active::after { width: 100%; }
+
+  /* ===== FULL PAGE SCROLL ===== */
+  #home-page {
+    padding-top: 0;
+  }
+
+  .error-msg {
+    color: var(--accent);
+    font-size: 0.8rem;
+    margin-top: 0.5rem;
+    text-align: center;
+    display: none;
+  }
+
+  /* ===== LOGIN PAGE STYLES ===== */
+  #login-page {
+    min-height: 100vh;
+  }
+
+  .login-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 100vh;
+  }
+
+  /* Left image panel */
+  .login-left {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .login-bg-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    animation: slowZoom 20s ease infinite alternate;
+  }
+
+  .login-left-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(13,10,5,0.75) 0%, rgba(139,26,26,0.3) 50%, rgba(13,10,5,0.85) 100%);
+    z-index: 1;
+  }
+
+  .login-left-content {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 3.5rem;
+  }
+
+  .login-brand {
+    font-family: 'Cinzel', serif;
+    font-size: 1rem;
+    letter-spacing: 0.3rem;
+    color: var(--gold);
+    margin-bottom: auto;
+    padding-top: 1rem;
+  }
+
+  .login-tagline {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    font-style: italic;
+    font-weight: 400;
+    color: var(--parchment);
+    line-height: 1.5;
+    margin-bottom: 1rem;
+  }
+
+  .login-author {
+    font-size: 0.8rem;
+    color: var(--gold-light);
+    letter-spacing: 0.1rem;
+    margin-bottom: 2rem;
+  }
+
+  .login-places {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .login-places span {
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.1rem;
+    color: rgba(245,237,214,0.6);
+    border: 1px solid rgba(201,168,76,0.25);
+    padding: 0.4rem 0.8rem;
+  }
+
+  /* Right form panel */
+  .login-right {
+    background: var(--dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem;
+  }
+
+  .login-form-wrap {
+    width: 100%;
+    max-width: 400px;
+  }
+
+  .auth-tabs {
+    display: flex;
+    margin-bottom: 2.5rem;
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+  }
+
+  .auth-tab {
+    flex: 1;
+    padding: 1rem;
+    background: none;
+    border: none;
+    font-family: 'Cinzel', serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.2rem;
+    text-transform: uppercase;
+    color: var(--stone);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    transition: all 0.3s;
+  }
+
+  .auth-tab.active {
+    color: var(--gold);
+    border-bottom-color: var(--gold);
+  }
+
+  .auth-tab:hover { color: var(--parchment); }
+
+  .form-header { margin-bottom: 2rem; }
+
+  .form-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--parchment);
+    margin-bottom: 0.4rem;
+  }
+
+  .form-subtitle {
+    font-size: 0.85rem;
+    color: var(--stone);
+  }
+
+  .input-group { margin-bottom: 1.3rem; }
+
+  .input-group label {
+    display: block;
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.18rem;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  .input-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .input-icon {
+    position: absolute;
+    left: 0.9rem;
+    font-size: 0.85rem;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0.5;
+  }
+
+  .input-wrap input {
+    width: 100%;
+    padding: 0.85rem 1rem 0.85rem 2.5rem;
+    background: rgba(245,237,214,0.04);
+    border: 1px solid rgba(201,168,76,0.18);
+    color: var(--parchment);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.95rem;
+    outline: none;
+    transition: all 0.3s;
+  }
+
+  .input-wrap input:focus {
+    border-color: var(--gold);
+    background: rgba(201,168,76,0.07);
+    box-shadow: 0 0 0 3px rgba(201,168,76,0.08);
+  }
+
+  .input-wrap input::placeholder { color: rgba(245,237,214,0.25); }
+
+  .toggle-pass {
+    position: absolute;
+    right: 0.9rem;
+    cursor: pointer;
+    font-size: 0.85rem;
+    opacity: 0.4;
+    transition: opacity 0.2s;
+    user-select: none;
+  }
+  .toggle-pass:hover { opacity: 0.8; }
+
+  .form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.2rem;
+    font-size: 0.8rem;
+  }
+
+  .remember-me {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--stone);
+    cursor: pointer;
+  }
+
+  .remember-me input[type="checkbox"] {
+    accent-color: var(--gold);
+    width: 14px;
+    height: 14px;
+    cursor: pointer;
+  }
+
+  .forgot-link {
+    color: var(--gold);
+    cursor: pointer;
+    font-size: 0.75rem;
+    font-family: 'Cinzel', serif;
+    letter-spacing: 0.05rem;
+    transition: opacity 0.2s;
+  }
+  .forgot-link:hover { opacity: 0.7; }
+
+  .error-box {
+    background: rgba(139,26,26,0.15);
+    border: 1px solid rgba(139,26,26,0.4);
+    color: #e07070;
+    font-size: 0.8rem;
+    padding: 0.7rem 1rem;
+    margin-bottom: 1rem;
+    display: none;
+    border-radius: 2px;
+  }
+
+  .success-box {
+    background: rgba(26,100,60,0.15);
+    border: 1px solid rgba(26,150,80,0.4);
+    color: #70c898;
+    font-size: 0.8rem;
+    padding: 0.7rem 1rem;
+    margin-bottom: 1rem;
+    display: none;
+    border-radius: 2px;
+  }
+
+  .btn-submit {
+    width: 100%;
+    padding: 1rem;
+    background: linear-gradient(135deg, var(--gold), #a07830);
+    color: var(--dark);
+    border: none;
+    font-family: 'Cinzel', serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.25rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .btn-submit:hover {
+    background: linear-gradient(135deg, #e8d5a3, var(--gold));
+    box-shadow: 0 6px 20px rgba(201,168,76,0.3);
+    transform: translateY(-1px);
+  }
+
+  .btn-submit:active { transform: translateY(0); }
+
+  .switch-text {
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--stone);
+  }
+
+  .switch-text a {
+    color: var(--gold);
+    cursor: pointer;
+    font-family: 'Cinzel', serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.05rem;
+  }
+
+  /* Navbar user info */
+  .nav-user-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .nav-username {
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.1rem;
+    color: var(--gold-light);
+  }
+
+  .btn-logout {
+    padding: 0.4rem 1.2rem;
+    border: 1px solid rgba(201,168,76,0.4);
+    background: transparent;
+    color: var(--gold);
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.15rem;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  .btn-logout:hover { background: rgba(201,168,76,0.1); }
+
+  /* ===== SEARCH BAR ===== */
+  .search-wrap {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 3rem;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .search-input-wrap {
+    position: relative;
+    width: 340px;
+  }
+  .search-input-wrap input {
+    width: 100%;
+    padding: 0.85rem 1rem 0.85rem 2.8rem;
+    background: rgba(201,168,76,0.06);
+    border: 1px solid rgba(201,168,76,0.25);
+    color: var(--parchment);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s;
+  }
+  .search-input-wrap input:focus {
+    border-color: var(--gold);
+    background: rgba(201,168,76,0.1);
+    box-shadow: 0 0 15px rgba(201,168,76,0.1);
+  }
+  .search-input-wrap input::placeholder { color: rgba(245,237,214,0.3); }
+  .search-icon {
+    position: absolute;
+    left: 0.9rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--gold);
+    opacity: 0.6;
+    pointer-events: none;
+  }
+  .search-clear {
+    position: absolute;
+    right: 0.9rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--stone);
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.2s;
+    font-size: 1.1rem;
+    line-height: 1;
+  }
+  .search-clear.visible { opacity: 0.6; }
+  .search-clear:hover { opacity: 1; }
+  .search-no-results {
+    text-align: center;
+    padding: 3rem;
+    color: var(--stone);
+    font-style: italic;
+    display: none;
+    width: 100%;
+    font-size: 1.1rem;
+  }
+  .place-card.hidden { display: none; }
+
+  /* ===== WISHLIST HEART ===== */
+  .wish-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 10;
+    background: rgba(13,10,5,0.7);
+    border: 1px solid rgba(201,168,76,0.3);
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.3s;
+    backdrop-filter: blur(4px);
+  }
+  .wish-btn:hover { border-color: var(--gold); background: rgba(13,10,5,0.9); }
+  .wish-btn.active { background: rgba(139,26,26,0.5); border-color: #e07070; }
+  .wish-btn.active::after { content: ''; }
+
+  /* ===== WISHLIST MODAL ===== */
+  .wishlist-btn-nav {
+    background: none;
+    border: 1px solid rgba(201,168,76,0.3);
+    color: var(--gold);
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.15rem;
+    padding: 0.35rem 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    position: relative;
+  }
+  .wishlist-btn-nav:hover { background: rgba(201,168,76,0.1); }
+  .wish-count-badge {
+    position: absolute;
+    top: -7px;
+    right: -7px;
+    background: var(--accent);
+    color: #fff;
+    font-size: 0.6rem;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cinzel', serif;
+    display: none;
+  }
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.75);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(4px);
+  }
+  .modal-overlay.open { display: flex; }
+  .modal-box {
+    background: var(--dark2);
+    border: 1px solid rgba(201,168,76,0.3);
+    width: 90%;
+    max-width: 560px;
+    max-height: 80vh;
+    overflow-y: auto;
+    padding: 2.5rem;
+    position: relative;
+    animation: fadeInUp 0.3s ease;
+  }
+  .modal-box::before, .modal-box::after {
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border-color: var(--gold);
+    border-style: solid;
+  }
+  .modal-box::before { top: -1px; left: -1px; border-width: 2px 0 0 2px; }
+  .modal-box::after { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
+  .modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1.2rem;
+    background: none;
+    border: none;
+    color: var(--stone);
+    font-size: 1.4rem;
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+  .modal-close:hover { color: var(--gold); }
+  .modal-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    color: var(--parchment);
+    margin-bottom: 0.3rem;
+  }
+  .modal-subtitle {
+    font-size: 0.8rem;
+    color: var(--stone);
+    margin-bottom: 1.8rem;
+    font-family: 'Cinzel', serif;
+    letter-spacing: 0.1rem;
+  }
+  .wish-list { display: flex; flex-direction: column; gap: 1rem; }
+  .wish-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    border: 1px solid rgba(201,168,76,0.12);
+    padding: 1rem;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  .wish-item:hover { border-color: rgba(201,168,76,0.4); background: rgba(201,168,76,0.04); }
+  .wish-item img {
+    width: 70px;
+    height: 50px;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+  .wish-item-info { flex: 1; }
+  .wish-item-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    color: var(--parchment);
+    margin-bottom: 0.2rem;
+  }
+  .wish-item-tag {
+    font-family: 'Cinzel', serif;
+    font-size: 0.55rem;
+    letter-spacing: 0.15rem;
+    color: var(--gold);
+  }
+  .wish-remove {
+    color: var(--stone);
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: color 0.2s;
+    padding: 0.3rem;
+  }
+  .wish-remove:hover { color: #e07070; }
+  .wish-empty {
+    text-align: center;
+    color: var(--stone);
+    font-style: italic;
+    padding: 2rem;
+    font-size: 1rem;
+  }
+
+  /* ===== LIGHTBOX ===== */
+  .lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.92);
+    z-index: 3000;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(8px);
+  }
+  .lightbox.open { display: flex; }
+  .lightbox img {
+    max-width: 90vw;
+    max-height: 85vh;
+    object-fit: contain;
+    border: 1px solid rgba(201,168,76,0.2);
+    animation: fadeInUp 0.3s ease;
+  }
+  .lightbox-close {
+    position: fixed;
+    top: 1.5rem;
+    right: 2rem;
+    background: none;
+    border: none;
+    color: var(--gold);
+    font-size: 2rem;
+    cursor: pointer;
+    z-index: 3001;
+    transition: opacity 0.2s;
+  }
+  .lightbox-close:hover { opacity: 0.7; }
+  .lightbox-label {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Cinzel', serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.3rem;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+  .lightbox-nav {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(13,10,5,0.7);
+    border: 1px solid rgba(201,168,76,0.3);
+    color: var(--gold);
+    font-size: 1.5rem;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    z-index: 3001;
+  }
+  .lightbox-nav:hover { background: rgba(201,168,76,0.15); }
+  .lightbox-prev { left: 2rem; }
+  .lightbox-next { right: 2rem; }
+
+  /* ===== SCROLL REVEAL ===== */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ===== NAVBAR SCROLL EFFECT ===== */
+  .navbar.scrolled {
+    padding-top: 0.7rem;
+    padding-bottom: 0.7rem;
+    box-shadow: 0 4px 30px rgba(0,0,0,0.5);
+  }
+</style>
+</head>
+<body>
+
+
+
+<!-- ===== LOGIN PAGE ===== -->
+<div id="login-page" class="page active">
+  <div class="login-split">
+
+    <!-- Left Panel: Image -->
+    <div class="login-left">
+      <div class="login-left-overlay"></div>
+      <img src="https://images.unsplash.com/photo-1548013146-72479768bada?w=1200&q=80" alt="Taj Mahal" class="login-bg-img">
+      <div class="login-left-content">
+        <div class="login-brand">✦ Timeless Journeys</div>
+        <h2 class="login-tagline">"The world is a book,<br>and those who do not travel<br>read only one page."</h2>
+        <p class="login-author">— Saint Augustine</p>
+        <div class="login-places">
+          <span>🏛️ Rome</span>
+          <span>🕌 Agra</span>
+          <span>🗿 Giza</span>
+          <span>🏯 Beijing</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Panel: Form -->
+    <div class="login-right">
+      <div class="login-form-wrap">
+
+        <!-- Tabs -->
+        <div class="auth-tabs">
+          <button class="auth-tab active" id="tab-login" onclick="switchTab('login')">Sign In</button>
+          <button class="auth-tab" id="tab-register" onclick="switchTab('register')">Register</button>
+        </div>
+
+        <!-- LOGIN FORM -->
+        <div id="form-login">
+          <div class="form-header">
+            <h1 class="form-title">Welcome Back</h1>
+            <p class="form-subtitle">Sign in to continue your journey</p>
+          </div>
+
+          <div class="input-group">
+            <label>Email Address</label>
+            <div class="input-wrap">
+              <span class="input-icon">✉</span>
+              <input type="email" id="li-email" placeholder="you@example.com" oninput="clearError('login-err')">
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label>Password</label>
+            <div class="input-wrap">
+              <span class="input-icon">🔒</span>
+              <input type="password" id="li-pass" placeholder="Enter your password" oninput="clearError('login-err')">
+              <span class="toggle-pass" onclick="togglePass('li-pass', this)">👁</span>
+            </div>
+          </div>
+
+          <div class="form-options">
+            <label class="remember-me"><input type="checkbox" id="remember"> Remember me</label>
+            <a class="forgot-link">Forgot password?</a>
+          </div>
+
+          <div class="error-box" id="login-err"></div>
+          <div class="success-box" id="login-ok"></div>
+
+          <button class="btn-submit" onclick="doLogin()">
+            <span>Sign In</span> <span>→</span>
+          </button>
+
+          <p class="switch-text">Don't have an account? <a onclick="switchTab('register')">Create one →</a></p>
+        </div>
+
+        <!-- REGISTER FORM -->
+        <div id="form-register" style="display:none;">
+          <div class="form-header">
+            <h1 class="form-title">Create Account</h1>
+            <p class="form-subtitle">Join thousands of history explorers</p>
+          </div>
+
+          <div class="input-group">
+            <label>Full Name</label>
+            <div class="input-wrap">
+              <span class="input-icon">👤</span>
+              <input type="text" id="reg-name" placeholder="Your full name" oninput="clearError('reg-err')">
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label>Email Address</label>
+            <div class="input-wrap">
+              <span class="input-icon">✉</span>
+              <input type="email" id="reg-email" placeholder="you@example.com" oninput="clearError('reg-err')">
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label>Password</label>
+            <div class="input-wrap">
+              <span class="input-icon">🔒</span>
+              <input type="password" id="reg-pass" placeholder="Min. 6 characters" oninput="clearError('reg-err')">
+              <span class="toggle-pass" onclick="togglePass('reg-pass', this)">👁</span>
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label>Confirm Password</label>
+            <div class="input-wrap">
+              <span class="input-icon">🔒</span>
+              <input type="password" id="reg-pass2" placeholder="Repeat your password" oninput="clearError('reg-err')">
+            </div>
+          </div>
+
+          <div class="error-box" id="reg-err"></div>
+          <div class="success-box" id="reg-ok"></div>
+
+          <button class="btn-submit" onclick="doRegister()">
+            <span>Create Account</span> <span>→</span>
+          </button>
+
+          <p class="switch-text">Already have an account? <a onclick="switchTab('login')">Sign in →</a></p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== MAIN SITE ===== -->
+<div id="home-page" class="page">
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-logo">✦ Timeless Journeys</div>
+    <ul class="nav-links">
+      <li><a onclick="scrollToSection('hero')" class="active">Home</a></li>
+      <li><a onclick="scrollToSection('destinations')">Destinations</a></li>
+      <li><a onclick="scrollToSection('featured')">Featured</a></li>
+      <li><a onclick="showGallery()">Gallery</a></li>
+      <li><a onclick="scrollToSection('categories')">Categories</a></li>
+    </ul>
+    <div class="nav-user-info">
+      <span class="nav-username" id="nav-username">✦ Explorer</span>
+      <button class="wishlist-btn-nav" onclick="openWishlist()" title="My Wishlist">
+        ♡ Wishlist
+        <span class="wish-count-badge" id="wish-badge">0</span>
+      </button>
+      <button class="btn-logout" onclick="doLogout()">Logout</button>
+    </div>
+  </nav>
+  <section class="hero" id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">✦ &nbsp; 7000 Years of Human Civilization &nbsp; ✦</p>
+      <h1 class="hero-title">Walk Through <em>History's</em><br>Greatest Wonders</h1>
+      <p class="hero-subtitle">From the pyramids of Egypt to the temples of Angkor — explore the monuments that defined humanity.</p>
+      <a class="hero-cta" onclick="scrollToSection('destinations')">Explore Destinations</a>
+    </div>
+    <div class="scroll-indicator">
+      <span>SCROLL</span>
+      <span>↓</span>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <div class="stats-bar">
+    <div class="stat-item">
+      <span class="stat-num">195</span>
+      <span class="stat-label">Countries</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">1,154</span>
+      <span class="stat-label">UNESCO Sites</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">7,000+</span>
+      <span class="stat-label">Years of History</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">8</span>
+      <span class="stat-label">Ancient Wonders</span>
+    </div>
+  </div>
+
+  <!-- Destinations Grid -->
+  <div class="section" id="destinations">
+    <div class="section-header">
+      <span class="section-tag">✦ World Heritage ✦</span>
+      <h2 class="section-title">Iconic Historical Destinations</h2>
+      <p class="section-desc">Each site a chapter in the grand book of human civilization — preserved for eternity.</p>
+    </div>
+    <!-- Search Bar -->
+    <div class="search-wrap">
+      <div class="search-input-wrap">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="dest-search" placeholder="Search destinations..." oninput="filterDestinations(this.value)" autocomplete="off">
+        <span class="search-clear" id="search-clear" onclick="clearSearch()">✕</span>
+      </div>
+    </div>
+
+    <div class="places-grid" id="places-grid">
+    <div class="search-no-results" id="no-results">No destinations found matching your search.</div>
+
+      <!-- Card 1 - Taj Mahal (tall) -->
+      <div class="place-card tall" data-id="taj" data-name="Taj Mahal" data-tag="India · 1632 AD" onclick="showDetail('taj')">
+        <button class="wish-btn" onclick="toggleWish(event,'taj')" title="Add to Wishlist">🤍</button>
+        <img class="place-img" src="https://images.unsplash.com/photo-1548013146-72479768bada?w=800&q=80" alt="Taj Mahal">
+        <div class="place-overlay"></div>
+        <div class="place-info">
+          <span class="place-tag">India · 1632 AD</span>
+          <h3 class="place-name">Taj Mahal</h3>
+          <p class="place-location">📍 Agra, Uttar Pradesh</p>
+          <p class="place-desc">An ivory-white marble mausoleum, built by Mughal emperor Shah Jahan — the ultimate monument to eternal love.</p>
+          <span class="place-link">Discover More →</span>
+        </div>
+      </div>
+
+      <!-- Card 2 - Colosseum -->
+      <div class="place-card" data-id="colosseum" data-name="The Colosseum" data-tag="Italy · 70 AD" onclick="showDetail('colosseum')">
+        <button class="wish-btn" onclick="toggleWish(event,'colosseum')" title="Add to Wishlist">🤍</button>
+        <img class="place-img" src="https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=800&q=80" alt="Colosseum">
+        <div class="place-overlay"></div>
+        <div class="place-info">
+          <span class="place-tag">Italy · 70 AD</span>
+          <h3 class="place-name">The Colosseum</h3>
+          <p class="place-location">📍 Rome, Italy</p>
+          <p class="place-desc">The world's largest ancient amphitheatre, seat of gladiatorial glory.</p>
+          <span class="place-link">Discover More →</span>
+        </div>
+      </div>
+
+      <!-- Card 3 - Machu Picchu -->
+      <div class="place-card" data-id="machu" data-name="Machu Picchu" data-tag="Peru · 1450 AD" onclick="showDetail('machu')">
+        <button class="wish-btn" onclick="toggleWish(event,'machu')" title="Add to Wishlist">🤍</button>
+        <img class="place-img" src="https://images.unsplash.com/photo-1587595431973-160d0d94add1?w=800&q=80" alt="Machu Picchu">
+        <div class="place-overlay"></div>
+        <div class="place-info">
+          <span class="place-tag">Peru · 1450 AD</span>
+          <h3 class="place-name">Machu Picchu</h3>
+          <p class="place-location">📍 Cusco Region, Peru</p>
+          <p class="place-desc">The lost city of the Incas, perched between sacred Andean peaks.</p>
+          <span class="place-link">Discover More →</span>
+        </div>
+      </div>
+
+      <!-- Card 4 - Great Wall (wide) -->
+      <div class="place-card wide" data-id="wall" data-name="The Great Wall of China" data-tag="China · 7th Century BC" onclick="showDetail('wall')">
+        <button class="wish-btn" onclick="toggleWish(event,'wall')" title="Add to Wishlist">🤍</button>
+        <img class="place-img" src="https://images.unsplash.com/photo-1508804185872-d7badad00f7d?w=1200&q=80" alt="Great Wall">
+        <div class="place-overlay"></div>
+        <div class="place-info">
+          <span class="place-tag">China · 7th Century BC</span>
+          <h3 class="place-name">The Great Wall of China</h3>
+          <p class="place-location">📍 Northern China</p>
+          <p class="place-desc">A 21,196 km fortification stretching across mountains, deserts, and grasslands — the mightiest construction in history.</p>
+          <span class="place-link">Discover More →</span>
+        </div>
+      </div>
+
+      <!-- Card 5 - Pyramids -->
+      <div class="place-card" data-id="pyramids" data-name="Pyramids of Giza" data-tag="Egypt · 2560 BC" onclick="showDetail('pyramids')">
+        <button class="wish-btn" onclick="toggleWish(event,'pyramids')" title="Add to Wishlist">🤍</button>
+        <img class="place-img" src="https://images.unsplash.com/photo-1539650116574-75c0c6d73f6e?w=800&q=80" alt="Pyramids">
+        <div class="place-overlay"></div>
+        <div class="place-info">
+          <span class="place-tag">Egypt · 2560 BC</span>
+          <h3 class="place-name">Pyramids of Giza</h3>
+          <p class="place-location">📍 Giza, Egypt</p>
+          <p class="place-desc">The oldest and largest of the Seven Wonders — standing for 4,500 years.</p>
+          <span class="place-link">Discover More →</span>
+        </div>
+      </div>
+
+      <!-- Card 6 - Angkor Wat -->
+      <div class="place-card" data-id="angkor" data-name="Angkor Wat" data-tag="Cambodia · 12th Century" onclick="showDetail('angkor')">
+        <button class="wish-btn" onclick="toggleWish(event,'angkor')" title="Add to Wishlist">🤍</button>
+        <img class="place-img" src="https://images.unsplash.com/photo-1508009603885-50cf7c579365?w=800&q=80" alt="Angkor Wat">
+        <div class="place-overlay"></div>
+        <div class="place-info">
+          <span class="place-tag">Cambodia · 12th Century</span>
+          <h3 class="place-name">Angkor Wat</h3>
+          <p class="place-location">📍 Siem Reap, Cambodia</p>
+          <p class="place-desc">The world's largest religious monument — a stone symphony of Khmer architecture.</p>
+          <span class="place-link">Discover More →</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Featured -->
+  <div class="featured-section" id="featured">
+    <div class="featured-grid">
+      <div class="featured-img-wrap">
+        <img class="featured-img" src="https://images.unsplash.com/photo-1548013146-72479768bada?w=900&q=80" alt="Featured">
+        <div class="featured-img-badge">
+          <span>★</span>
+          <span>EDITOR'S</span>
+          <span>CHOICE</span>
+        </div>
+      </div>
+      <div class="featured-content">
+        <div class="featured-year">1632</div>
+        <h2 class="featured-title">The Eternal Monument of Love</h2>
+        <p class="featured-text">
+          Built by the fifth Mughal Emperor, Shah Jahan, in memory of his beloved wife Mumtaz Mahal who died in 1631. 
+          The Taj Mahal is widely considered the jewel of Muslim art in India and one of the universally admired masterpieces of the world's heritage.
+        </p>
+        <p class="featured-text">
+          It took over 20,000 artisans and craftsmen — drawing from Persia, Ottoman Empire, and India — more than 20 years to complete this testament to devotion.
+        </p>
+        <div class="featured-facts">
+          <div class="fact">
+            <span class="fact-label">Built</span>
+            <span class="fact-value">1632 – 1653</span>
+          </div>
+          <div class="fact">
+            <span class="fact-label">Location</span>
+            <span class="fact-value">Agra, India</span>
+          </div>
+          <div class="fact">
+            <span class="fact-label">UNESCO</span>
+            <span class="fact-value">Listed 1983</span>
+          </div>
+          <div class="fact">
+            <span class="fact-label">Visitors</span>
+            <span class="fact-value">8M / Year</span>
+          </div>
+        </div>
+        <a class="hero-cta" onclick="showDetail('taj')" style="font-size:0.6rem; padding:0.8rem 2rem;">Read Full Story</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Categories -->
+  <div class="section" id="categories">
+    <div class="section-header">
+      <span class="section-tag">✦ Browse By Type ✦</span>
+      <h2 class="section-title">Explore by Category</h2>
+      <p class="section-desc">From ancient temples to medieval castles — find the history that moves you.</p>
+    </div>
+    <div class="categories-grid">
+      <div class="cat-card">
+        <span class="cat-icon">🏛️</span>
+        <div class="cat-name">Ancient Temples</div>
+        <div class="cat-count">47 Destinations</div>
+      </div>
+      <div class="cat-card">
+        <span class="cat-icon">🏰</span>
+        <div class="cat-name">Medieval Castles</div>
+        <div class="cat-count">63 Destinations</div>
+      </div>
+      <div class="cat-card">
+        <span class="cat-icon">🗿</span>
+        <div class="cat-name">Ancient Ruins</div>
+        <div class="cat-count">89 Destinations</div>
+      </div>
+      <div class="cat-card">
+        <span class="cat-icon">⛩️</span>
+        <div class="cat-name">Sacred Sites</div>
+        <div class="cat-count">71 Destinations</div>
+      </div>
+      <div class="cat-card">
+        <span class="cat-icon">🏺</span>
+        <div class="cat-name">Archaeological Sites</div>
+        <div class="cat-count">55 Destinations</div>
+      </div>
+      <div class="cat-card">
+        <span class="cat-icon">🗼</span>
+        <div class="cat-name">Iconic Monuments</div>
+        <div class="cat-count">34 Destinations</div>
+      </div>
+      <div class="cat-card">
+        <span class="cat-icon">🌊</span>
+        <div class="cat-name">Coastal Forts</div>
+        <div class="cat-count">28 Destinations</div>
+      </div>
+      <div class="cat-card">
+        <span class="cat-icon">🌿</span>
+        <div class="cat-name">Lost Cities</div>
+        <div class="cat-count">19 Destinations</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quote -->
+  <div class="testimonial-section">
+    <p class="testimonial-quote">"To travel is to take a journey into yourself — and through history, to understand how we came to be who we are."</p>
+    <span class="testimonial-author">— Danny Kaye</span>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2026 Timeless Journeys · All Rights Reserved</p>
+    <ul class="footer-links">
+      <li><a>About</a></li>
+      <li><a>Privacy</a></li>
+      <li><a>Terms</a></li>
+      <li><a>Contact</a></li>
+    </ul>
+  </footer>
+
+</div>
+
+<!-- ===== GALLERY PAGE ===== -->
+<div id="gallery-page" class="page">
+  <nav class="navbar">
+    <div class="nav-logo">✦ Timeless Journeys</div>
+    <ul class="nav-links">
+      <li><a onclick="showHome()">Home</a></li>
+      <li><a onclick="showGallery()" class="active">Gallery</a></li>
+    </ul>
+    <div class="nav-user"></div>
+  </nav>
+
+  <div style="padding: 7rem 4rem 2rem;">
+    <div class="section-header">
+      <span class="section-tag">✦ Visual Archive ✦</span>
+      <h2 class="section-title">Gallery of Wonders</h2>
+      <p class="section-desc">A curated collection of the world's most breathtaking historical sites.</p>
+    </div>
+  </div>
+
+  <div class="gallery-grid">
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1539650116574-75c0c6d73f6e?w=600&q=80" alt="Pyramids">
+      <div class="gallery-item-overlay"><span class="gallery-item-label">Pyramids of Giza</span></div>
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1548013146-72479768bada?w=600&q=80" alt="Taj Mahal">
+      <div class="gallery-item-overlay"><span class="gallery-item-label">Taj Mahal</span></div>
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=600&q=80" alt="Colosseum">
+      <div class="gallery-item-overlay"><span class="gallery-item-label">The Colosseum</span></div>
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1587595431973-160d0d94add1?w=600&q=80" alt="Machu Picchu">
+      <div class="gallery-item-overlay"><span class="gallery-item-label">Machu Picchu</span></div>
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1508804185872-d7badad00f7d?w=600&q=80" alt="Great Wall">
+      <div class="gallery-item-overlay"><span class="gallery-item-label">Great Wall of China</span></div>
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1508009603885-50cf7c579365?w=600&q=80" alt="Angkor Wat">
+      <div class="gallery-item-overlay"><span class="gallery-item-label">Angkor Wat</span></div>
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1564507592333-c60657eea523?w=600&q=80" alt="Parthenon">
+      <div class="gallery-item-overlay"><span class="gallery-item-label">Parthenon, Athens</span></div>
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1602002418082-a4443e081dd1?w=600&q=80" alt="Petra">
+      <div class="gallery-item-overlay"><span class="gallery-item-label">Petra, Jordan</span></div>
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1533929736458-ca588d08c8be?w=600&q=80" alt="Stonehenge">
+      <div class="gallery-item-overlay"><span class="gallery-item-label">Stonehenge</span></div>
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1570939274717-7eda259b50ed?w=600&q=80" alt="Chichen Itza">
+      <div class="gallery-item-overlay"><span class="gallery-item-label">Chichen Itza</span></div>
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1555993539-1732b0258235?w=600&q=80" alt="Alhambra">
+      <div class="gallery-item-overlay"><span class="gallery-item-label">Alhambra, Spain</span></div>
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1523531294919-4bcd7c65e216?w=600&q=80" alt="Mont Saint Michel">
+      <div class="gallery-item-overlay"><span class="gallery-item-label">Mont Saint-Michel</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== DETAIL PAGE ===== -->
+<div id="detail-page" class="page">
+  <nav class="navbar">
+    <div class="nav-logo">✦ Timeless Journeys</div>
+    <ul class="nav-links">
+      <li><a onclick="showHome()">Home</a></li>
+      <li><a onclick="showGallery()">Gallery</a></li>
+    </ul>
+    <div class="nav-user"></div>
+  </nav>
+
+  <div id="detail-content-wrap"></div>
+</div>
+
+<script>
+  const places = {
+    taj: {
+      name: "Taj Mahal",
+      tag: "India · UNESCO World Heritage",
+      location: "Agra, Uttar Pradesh, India",
+      img: "https://images.unsplash.com/photo-1548013146-72479768bada?w=1400&q=80",
+      built: "1632 – 1653",
+      era: "Mughal Empire",
+      type: "Mausoleum",
+      visitors: "8 Million/Year",
+      status: "UNESCO Listed 1983",
+      desc1: "The Taj Mahal is an ivory-white marble mausoleum on the right bank of the river Yamuna in the Indian city of Agra. It was commissioned in 1631 by the fifth Mughal emperor Shah Jahan to house the tomb of his beloved wife Mumtaz Mahal, who died giving birth to their 14th child.",
+      desc2: "The complex incorporates the main gateway, a garden, a mosque, a rest house, and the mausoleum itself. Considered as one of the finest examples of Mughal architecture — blending elements of Persian, Ottoman Turkish, and Indian architectural styles.",
+      desc3: "Today, it is visited by millions of people each year and is undoubtedly one of the most celebrated buildings in the world. The changing colors of the marble — blushing pink at dawn, dazzling white in midday sun, golden at sunset — have made it one of the world's most photographed monuments."
+    },
+    colosseum: {
+      name: "The Colosseum",
+      tag: "Italy · Ancient Roman Architecture",
+      location: "Piazza del Colosseo, Rome, Italy",
+      img: "https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=1400&q=80",
+      built: "70 – 80 AD",
+      era: "Roman Empire",
+      type: "Amphitheatre",
+      visitors: "7.5 Million/Year",
+      status: "UNESCO Listed 1980",
+      desc1: "The Colosseum, also known as the Flavian Amphitheatre, is an oval amphitheatre in the centre of the city of Rome. Built of travertine limestone, tuff, and brick-faced concrete, it was the largest amphitheatre ever built at the time.",
+      desc2: "The Colosseum could hold between 50,000 and 80,000 spectators, having an average audience of some 65,000. It was used for gladiatorial contests and public spectacles such as mock sea battles, animal hunts, executions, re-enactments of famous battles, and dramas based on Roman mythology.",
+      desc3: "Although partially ruined because of damage caused by earthquakes and stone-robbers, the Colosseum is still an iconic symbol of Imperial Rome and was listed as one of the New Seven Wonders of the World in 2007."
+    },
+    machu: {
+      name: "Machu Picchu",
+      tag: "Peru · Inca Civilization",
+      location: "Cusco Region, Peru",
+      img: "https://images.unsplash.com/photo-1587595431973-160d0d94add1?w=1400&q=80",
+      built: "c. 1450 AD",
+      era: "Inca Empire",
+      type: "Citadel",
+      visitors: "1.5 Million/Year",
+      status: "UNESCO Listed 1983",
+      desc1: "Machu Picchu is a 15th-century Inca citadel located in the Eastern Cordillera of southern Peru on a 2,430-metre mountain ridge. It is often referred to as the 'Lost City of the Incas' and is the most familiar icon of the Inca civilization.",
+      desc2: "The site was built as an estate for the Inca emperor Pachacuti (1438–1472). It was abandoned a century later, at the time of the Spanish Conquest. Although locally known, it was largely unknown to the rest of the world before being brought to international attention in 1911 by American historian Hiram Bingham.",
+      desc3: "Most of the outlying buildings have been restored to give tourists a better idea of what the original city looked like. The site encompasses about 200 structures, plazas, and temples, arranged on a series of terraces."
+    },
+    wall: {
+      name: "The Great Wall of China",
+      tag: "China · Ancient Fortification",
+      location: "Northern China",
+      img: "https://images.unsplash.com/photo-1508804185872-d7badad00f7d?w=1400&q=80",
+      built: "7th Century BC – 17th Century AD",
+      era: "Various Dynasties",
+      type: "Fortification Wall",
+      visitors: "10 Million/Year",
+      status: "UNESCO Listed 1987",
+      desc1: "The Great Wall of China is a series of walls and fortifications that were built across the historical northern borders of ancient Chinese states and Imperial China as protection against various nomadic groups from the Eurasian Steppe.",
+      desc2: "Several walls were built from as early as the 7th century BC, with selective stretches later joined together by Qin Shi Huang (221–206 BC). The most well-known sections of the wall were built by the Ming dynasty (1368–1644) and stretch for 8,850 km.",
+      desc3: "The total length of all sections ever built is over 21,196 kilometres. The Great Wall is the world's longest man-made structure, and at the height of the Ming dynasty it had over one million soldiers stationed along its walls."
+    },
+    pyramids: {
+      name: "Pyramids of Giza",
+      tag: "Egypt · Ancient Wonder",
+      location: "Giza, Cairo, Egypt",
+      img: "https://images.unsplash.com/photo-1539650116574-75c0c6d73f6e?w=1400&q=80",
+      built: "c. 2560 BC",
+      era: "Old Kingdom of Egypt",
+      type: "Royal Tombs",
+      visitors: "14.7 Million/Year",
+      status: "UNESCO Listed 1979",
+      desc1: "The Great Pyramid of Giza is the oldest and largest of the three pyramids in the Giza pyramid complex and is the oldest of the Seven Wonders of the Ancient World, and the only one to remain largely intact. It was built as a tomb for Pharaoh Khufu over a period of about 20 years.",
+      desc2: "The pyramid was originally covered in casing stones made of highly polished Tura limestone, giving it a brilliant white appearance that could be seen from miles away. Of the original 144-metre height, only 138.5 metres remain today.",
+      desc3: "For over 3,800 years, the Great Pyramid stood as the world's tallest man-made structure — a record not surpassed until the Lincoln Cathedral was completed around 1311 AD. The precision of its construction remains one of the great mysteries of the ancient world."
+    },
+    angkor: {
+      name: "Angkor Wat",
+      tag: "Cambodia · Khmer Empire",
+      location: "Siem Reap, Cambodia",
+      img: "https://images.unsplash.com/photo-1508009603885-50cf7c579365?w=1400&q=80",
+      built: "c. 1113–1150 AD",
+      era: "Khmer Empire",
+      type: "Temple Complex",
+      visitors: "2.6 Million/Year",
+      status: "UNESCO Listed 1992",
+      desc1: "Angkor Wat is a temple complex in Cambodia and is the largest religious monument in the world, on a site measuring 162.6 hectares. It was built during the reign of King Suryavarman II in the early 12th century in Yasodharapura as his state temple and mausoleum.",
+      desc2: "Unlike most Khmer temples, Angkor Wat is oriented to the west; scholars are divided as to the significance of this. The temple is at the top of the high classical style of Khmer architecture. It has become a symbol of Cambodia, appearing on its national flag.",
+      desc3: "The complex is decorated with intricate bas-reliefs and devatas, and served first as the state temple and then as a Buddhist temple. Today it is one of Southeast Asia's most important archaeological sites and attracts millions of pilgrims and tourists each year."
+    }
+  };
+
+
+  function showPage(id) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    window.scrollTo(0, 0);
+  }
+
+  function showHome() {
+    showPage('home-page');
+  }
+
+  function showGallery() {
+    showPage('gallery-page');
+  }
+
+  function scrollToSection(id) {
+    showPage('home-page');
+    setTimeout(() => {
+      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    }, 100);
+  }
+
+  function showDetail(placeId) {
+    const p = places[placeId];
+    if (!p) return;
+
+    document.getElementById('detail-content-wrap').innerHTML = `
+      <div class="detail-hero" style="margin-top:70px;">
+        <img class="detail-hero-img" src="${p.img}" alt="${p.name}">
+        <div class="detail-hero-overlay"></div>
+        <div class="detail-hero-content">
+          <button class="back-btn" onclick="showHome()">← Back to Destinations</button>
+          <span class="section-tag" style="text-align:left;display:block;">${p.tag}</span>
+          <h1 class="hero-title" style="font-size:clamp(2.5rem,5vw,4rem);">${p.name}</h1>
+          <p class="place-location" style="font-size:1rem;">📍 ${p.location}</p>
+        </div>
+      </div>
+      <div class="detail-content">
+        <div class="detail-body">
+          <p>${p.desc1}</p>
+          <p>${p.desc2}</p>
+          <p>${p.desc3}</p>
+        </div>
+        <div class="detail-sidebar">
+          <div class="info-card">
+            <h3>Quick Facts</h3>
+            <div class="info-row"><span>Built</span><span>${p.built}</span></div>
+            <div class="info-row"><span>Era</span><span>${p.era}</span></div>
+            <div class="info-row"><span>Type</span><span>${p.type}</span></div>
+            <div class="info-row"><span>Annual Visitors</span><span>${p.visitors}</span></div>
+            <div class="info-row"><span>Status</span><span>${p.status}</span></div>
+          </div>
+          <div class="info-card">
+            <h3>Planning Your Visit</h3>
+            <div class="info-row"><span>Best Season</span><span>Oct – Mar</span></div>
+            <div class="info-row"><span>Duration</span><span>Half to Full Day</span></div>
+            <div class="info-row"><span>Entry Fee</span><span>Varies</span></div>
+          </div>
+        </div>
+      </div>
+    `;
+    showPage('detail-page');
+  }
+
+  // ===== AUTH FUNCTIONS =====
+
+  // Pre-load a demo user
+  if (!localStorage.getItem('tj_users')) {
+    localStorage.setItem('tj_users', JSON.stringify([
+      { name: 'Demo User', email: 'demo@timeless.com', password: 'demo123' }
+    ]));
+  }
+
+  function switchTab(tab) {
+    document.getElementById('tab-login').classList.toggle('active', tab === 'login');
+    document.getElementById('tab-register').classList.toggle('active', tab === 'register');
+    document.getElementById('form-login').style.display = tab === 'login' ? 'block' : 'none';
+    document.getElementById('form-register').style.display = tab === 'register' ? 'block' : 'none';
+    clearError('login-err'); clearError('reg-err');
+    clearError('login-ok'); clearError('reg-ok');
+  }
+
+  function showError(id, msg) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.textContent = msg;
+    el.style.display = 'block';
+  }
+
+  function clearError(id) {
+    const el = document.getElementById(id);
+    if (el) { el.textContent = ''; el.style.display = 'none'; }
+  }
+
+  function togglePass(inputId, btn) {
+    const inp = document.getElementById(inputId);
+    if (inp.type === 'password') { inp.type = 'text'; btn.textContent = '🙈'; }
+    else { inp.type = 'password'; btn.textContent = '👁'; }
+  }
+
+  function doLogin() {
+    const email = document.getElementById('li-email').value.trim();
+    const pass  = document.getElementById('li-pass').value;
+    if (!email || !pass) { showError('login-err', '⚠ Please fill in all fields.'); return; }
+    if (!/\S+@\S+\.\S+/.test(email)) { showError('login-err', '⚠ Enter a valid email address.'); return; }
+    const users = JSON.parse(localStorage.getItem('tj_users') || '[]');
+    const user = users.find(u => u.email === email && u.password === pass);
+    if (!user) { showError('login-err', '✗ Invalid email or password. Try: demo@timeless.com / demo123'); return; }
+    localStorage.setItem('tj_session', JSON.stringify({ name: user.name, email: user.email }));
+    document.getElementById('nav-username').textContent = '✦ ' + user.name;
+    clearError('login-err');
+    showError('login-ok', '✓ Welcome back, ' + user.name + '! Loading your journey…');
+    setTimeout(() => showPage('home-page'), 900);
+  }
+
+  function doRegister() {
+    const name  = document.getElementById('reg-name').value.trim();
+    const email = document.getElementById('reg-email').value.trim();
+    const pass  = document.getElementById('reg-pass').value;
+    const pass2 = document.getElementById('reg-pass2').value;
+    if (!name || !email || !pass || !pass2) { showError('reg-err', '⚠ Please fill in all fields.'); return; }
+    if (!/\S+@\S+\.\S+/.test(email)) { showError('reg-err', '⚠ Enter a valid email address.'); return; }
+    if (pass.length < 6) { showError('reg-err', '⚠ Password must be at least 6 characters.'); return; }
+    if (pass !== pass2) { showError('reg-err', '✗ Passwords do not match.'); return; }
+    const users = JSON.parse(localStorage.getItem('tj_users') || '[]');
+    if (users.find(u => u.email === email)) { showError('reg-err', '✗ This email is already registered.'); return; }
+    users.push({ name, email, password: pass });
+    localStorage.setItem('tj_users', JSON.stringify(users));
+    showError('reg-ok', '✓ Account created! Switching to login…');
+    setTimeout(() => {
+      switchTab('login');
+      document.getElementById('li-email').value = email;
+    }, 1200);
+  }
+
+  function doLogout() {
+    localStorage.removeItem('tj_session');
+    document.getElementById('li-email').value = '';
+    document.getElementById('li-pass').value = '';
+    showPage('login-page');
+    switchTab('login');
+  }
+
+  // Restore session if already logged in
+  (function checkSession() {
+    const s = localStorage.getItem('tj_session');
+    if (s) {
+      const user = JSON.parse(s);
+      document.getElementById('nav-username').textContent = '✦ ' + user.name;
+      showPage('home-page');
+    }
+  })();
+
+  // ===== NAVBAR SCROLL EFFECT =====
+  (function initNavScroll() {
+    const navbars = document.querySelectorAll('.navbar');
+    window.addEventListener('scroll', () => {
+      navbars.forEach(nav => {
+        nav.classList.toggle('scrolled', window.scrollY > 60);
+      });
+    }, { passive: true });
+  })();
+
+  // ===== ANIMATED STAT COUNTERS =====
+  function animateCounters() {
+    const stats = document.querySelectorAll('.stat-num');
+    stats.forEach(el => {
+      if (el.dataset.animated) return;
+      el.dataset.animated = '1';
+      const text = el.textContent.trim();
+      const num = parseFloat(text.replace(/[^0-9.]/g, ''));
+      if (isNaN(num)) return;
+      const suffix = text.replace(/[0-9.,]/g, '');
+      let start = 0;
+      const duration = 1800;
+      const step = 16;
+      const increment = num / (duration / step);
+      el.textContent = '0' + suffix;
+      const timer = setInterval(() => {
+        start += increment;
+        if (start >= num) {
+          start = num;
+          clearInterval(timer);
+        }
+        const display = num % 1 !== 0 ? start.toFixed(1) : Math.floor(start).toLocaleString();
+        el.textContent = display + suffix;
+      }, step);
+    });
+  }
+
+  // ===== SCROLL REVEAL =====
+  (function initReveal() {
+    // Mark elements to reveal
+    const targets = [
+      '.place-card', '.cat-card', '.featured-grid',
+      '.testimonial-quote', '.section-header', '.stats-bar',
+      '.gallery-item'
+    ];
+    targets.forEach(sel => {
+      document.querySelectorAll(sel).forEach((el, i) => {
+        el.classList.add('reveal');
+        el.style.transitionDelay = (i * 0.07) + 's';
+      });
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          // Trigger stat counters when stats bar becomes visible
+          if (entry.target.classList.contains('stats-bar')) animateCounters();
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  })();
+
+  // ===== SEARCH / FILTER DESTINATIONS =====
+  function filterDestinations(query) {
+    const q = query.toLowerCase().trim();
+    const cards = document.querySelectorAll('#places-grid .place-card');
+    const clearBtn = document.getElementById('search-clear');
+    let visible = 0;
+
+    clearBtn.classList.toggle('visible', q.length > 0);
+
+    cards.forEach(card => {
+      const name = (card.dataset.name || '').toLowerCase();
+      const tag  = (card.dataset.tag  || '').toLowerCase();
+      const desc = card.querySelector('.place-desc')?.textContent.toLowerCase() || '';
+      const loc  = card.querySelector('.place-location')?.textContent.toLowerCase() || '';
+      const match = !q || name.includes(q) || tag.includes(q) || desc.includes(q) || loc.includes(q);
+      card.classList.toggle('hidden', !match);
+      if (match) visible++;
+    });
+
+    const noRes = document.getElementById('no-results');
+    noRes.style.display = visible === 0 && q.length > 0 ? 'block' : 'none';
+  }
+
+  function clearSearch() {
+    const inp = document.getElementById('dest-search');
+    inp.value = '';
+    filterDestinations('');
+    inp.focus();
+  }
+
+  // ===== WISHLIST =====
+  let wishlist = JSON.parse(localStorage.getItem('tj_wishlist') || '[]');
+
+  function saveWishlist() {
+    localStorage.setItem('tj_wishlist', JSON.stringify(wishlist));
+    updateWishBadge();
+  }
+
+  function updateWishBadge() {
+    const badge = document.getElementById('wish-badge');
+    if (!badge) return;
+    badge.textContent = wishlist.length;
+    badge.style.display = wishlist.length > 0 ? 'flex' : 'none';
+  }
+
+  function toggleWish(e, id) {
+    e.stopPropagation();
+    const btn = e.currentTarget;
+    const idx = wishlist.indexOf(id);
+    if (idx === -1) {
+      wishlist.push(id);
+      btn.textContent = '❤️';
+      btn.classList.add('active');
+      // Pulse animation
+      btn.style.transform = 'scale(1.3)';
+      setTimeout(() => btn.style.transform = '', 200);
+    } else {
+      wishlist.splice(idx, 1);
+      btn.textContent = '🤍';
+      btn.classList.remove('active');
+    }
+    saveWishlist();
+  }
+
+  function initWishButtons() {
+    document.querySelectorAll('.wish-btn').forEach(btn => {
+      const card = btn.closest('.place-card');
+      if (!card) return;
+      const id = card.dataset.id;
+      if (wishlist.includes(id)) {
+        btn.textContent = '❤️';
+        btn.classList.add('active');
+      }
+    });
+    updateWishBadge();
+  }
+
+  function openWishlist() {
+    const modal = document.getElementById('wishlist-modal');
+    const list  = document.getElementById('wish-list-content');
+    const sub   = document.getElementById('wish-modal-sub');
+    list.innerHTML = '';
+
+    if (wishlist.length === 0) {
+      list.innerHTML = '<p class="wish-empty">No destinations saved yet. Click 🤍 on any card to save it.</p>';
+      sub.textContent = '0 destinations saved';
+    } else {
+      sub.textContent = wishlist.length + ' destination' + (wishlist.length > 1 ? 's' : '') + ' saved';
+      wishlist.forEach(id => {
+        const p = places[id];
+        if (!p) return;
+        const item = document.createElement('div');
+        item.className = 'wish-item';
+        item.innerHTML = `
+          <img src="${p.img.replace('w=1400','w=200')}" alt="${p.name}">
+          <div class="wish-item-info">
+            <div class="wish-item-name">${p.name}</div>
+            <div class="wish-item-tag">${p.tag}</div>
+          </div>
+          <span class="wish-remove" title="Remove" onclick="removeWish('${id}')">✕</span>
+        `;
+        item.querySelector('.wish-item-info').addEventListener('click', () => {
+          closeWishlist();
+          showDetail(id);
+        });
+        list.appendChild(item);
+      });
+    }
+
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function removeWish(id) {
+    wishlist = wishlist.filter(i => i !== id);
+    saveWishlist();
+    // update button on card
+    const card = document.querySelector(`.place-card[data-id="${id}"] .wish-btn`);
+    if (card) { card.textContent = '🤍'; card.classList.remove('active'); }
+    openWishlist(); // re-render
+  }
+
+  function closeWishlist() {
+    document.getElementById('wishlist-modal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function closeWishlistOnOverlay(e) {
+    if (e.target === document.getElementById('wishlist-modal')) closeWishlist();
+  }
+
+  // ===== LIGHTBOX FOR GALLERY =====
+  let lightboxImages = [];
+  let lightboxIndex = 0;
+
+  (function initLightbox() {
+    const items = document.querySelectorAll('.gallery-item');
+    items.forEach((item, i) => {
+      const img   = item.querySelector('img');
+      const label = item.querySelector('.gallery-item-label');
+      lightboxImages.push({ src: img.src.replace('w=600','w=1400'), label: label?.textContent || '' });
+      item.style.cursor = 'zoom-in';
+      item.addEventListener('click', () => openLightbox(i));
+    });
+  })();
+
+  function openLightbox(i) {
+    lightboxIndex = i;
+    const lb = document.getElementById('lightbox');
+    document.getElementById('lightbox-img').src = lightboxImages[i].src;
+    document.getElementById('lightbox-label').textContent = lightboxImages[i].label;
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function closeLightboxOnOverlay(e) {
+    if (e.target === document.getElementById('lightbox')) closeLightbox();
+  }
+
+  function lightboxNav(dir) {
+    lightboxIndex = (lightboxIndex + dir + lightboxImages.length) % lightboxImages.length;
+    const img = document.getElementById('lightbox-img');
+    img.style.opacity = '0';
+    setTimeout(() => {
+      img.src = lightboxImages[lightboxIndex].src;
+      document.getElementById('lightbox-label').textContent = lightboxImages[lightboxIndex].label;
+      img.style.opacity = '1';
+    }, 150);
+  }
+
+  // Keyboard support
+  document.addEventListener('keydown', e => {
+    const lb = document.getElementById('lightbox');
+    if (lb?.classList.contains('open')) {
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowRight') lightboxNav(1);
+      if (e.key === 'ArrowLeft')  lightboxNav(-1);
+      return;
+    }
+    const wm = document.getElementById('wishlist-modal');
+    if (wm?.classList.contains('open') && e.key === 'Escape') { closeWishlist(); return; }
+  });
+
+  // Init on load
+  initWishButtons();
+
+</script>
+<!-- ===== WISHLIST MODAL ===== -->
+<div class="modal-overlay" id="wishlist-modal" onclick="closeWishlistOnOverlay(event)">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeWishlist()">✕</button>
+    <h2 class="modal-title">My Wishlist</h2>
+    <p class="modal-subtitle" id="wish-modal-sub">Your saved destinations</p>
+    <div class="wish-list" id="wish-list-content"></div>
+  </div>
+</div>
+
+<!-- ===== LIGHTBOX ===== -->
+<div class="lightbox" id="lightbox" onclick="closeLightboxOnOverlay(event)">
+  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  <button class="lightbox-nav lightbox-prev" onclick="lightboxNav(-1)">‹</button>
+  <img id="lightbox-img" src="" alt="">
+  <button class="lightbox-nav lightbox-next" onclick="lightboxNav(1)">›</button>
+  <span class="lightbox-label" id="lightbox-label"></span>
+</div>
+
+</body>
+</html>
